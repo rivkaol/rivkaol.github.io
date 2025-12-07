@@ -48,7 +48,7 @@
 
         /* עיצוב לוגו - הוקטן לפי בקשתך */
         .logo-container {
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* רווח קצת יותר גדול */
             text-align: center;
         }
         
@@ -60,12 +60,15 @@
             margin: 0 auto;
         }
 
-        /* עיצוב תמונת פרופיל - הוגדל לפי בקשתך */
+        /* עיצוב תמונת פרופיל - הוגדל וממורכז */
         .profile-wrapper {
             position: relative;
             width: 170px; /* הוגדל מ-120 ל-170 */
             height: 170px; /* הוגדל מ-120 ל-170 */
-            margin: 0 auto 20px auto;
+            margin: 0 auto 25px auto; /* רווח קצת יותר גדול למטה */
+            display: flex; /* הוספה למרכוז */
+            justify-content: center; /* הוספה למרכוז */
+            align-items: center; /* הוספה למרכוז */
         }
 
         .profile-img {
@@ -174,7 +177,7 @@
             <img src="logo.jpg.png" alt="לוגו רבקה הולצברג" class="logo-img">
         </div>
 
-        <!-- תמונת פרופיל (גדולה) -->
+        <!-- תמונת פרופיל (גדולה וממורכזת) -->
         <div class="profile-wrapper">
             <img src="profile.jpg.jpg" alt="רבקה הולצברג" class="profile-img">
         </div>
