@@ -121,7 +121,6 @@
             animation: slideUpFade 0.6s ease-out forwards;
         }
 
-        /* עדכון האנימציה שתעבוד נכון עם הסדר החדש */
         .links > a:nth-of-type(1) { animation-delay: 0.1s; }
         .links > a:nth-of-type(2) { animation-delay: 0.2s; }
         .links > a:nth-of-type(3) { animation-delay: 0.3s; }
@@ -149,7 +148,7 @@
             font-size: 1.1rem;
             padding: 22px;
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
-            margin-top: 10px; /* רווח קטן מהמתנות */
+            margin-top: 10px;
             margin-bottom: 5px;
         }
         .btn.featured i { color: white; }
@@ -200,11 +199,28 @@
             background: var(--primary-green);
         }
 
+        /* עיצוב הפוטר המשפטי החדש */
         footer {
-            margin-top: 30px;
+            margin-top: 50px;
+            padding-bottom: 20px;
             font-size: 0.85rem;
             color: var(--primary-green);
-            opacity: 0.6;
+        }
+        .legal-nav {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0.8;
+        }
+        .legal-nav a {
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .legal-nav a:hover {
+            color: var(--accent-gold);
+            text-decoration: underline;
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -225,7 +241,6 @@
         
         <div class="links">
             
-            <!-- אזור מתנות ראשון -->
             <div style="text-align: center;">
                 <div class="section-title">הגעת מהסרטון? המתנות שלך כאן 👇</div>
             </div>
@@ -240,14 +255,12 @@
                 להורדת חוברת מתוקים ללא רגשות אשם (במתנה)
             </a>
 
-            <!-- אזור הספר המודפס -->
             <a href="https://rivkaol.github.io/sefer-matkonim/" class="btn featured">
                 <span class="badge">המומלץ ביותר ⭐</span>
                 <i class="fa-solid fa-book-open"></i>
                 <span>המתנה הכי טובה למטבח שלך<br><small>הזמיני את ספר המתכונים המודפס</small></span>
             </a>
 
-            <!-- שאר הקישורים -->
             <div style="text-align: center;">
                 <div class="section-title">עוד בקהילה</div>
             </div>
@@ -272,7 +285,12 @@
         </div>
 
         <footer>
-            © כל הזכויות שמורות לרבקה הולצברג
+            <p>© כל הזכויות שמורות לרבקה הולצברג</p>
+            <nav class="legal-nav">
+                <a href="legal/privacy.html">מדיניות פרטיות</a> | 
+                <a href="legal/terms.html">תנאי שימוש</a> | 
+                <a href="legal/accessibility.html">נגישות</a>
+            </nav>
         </footer>
     </div>
 
