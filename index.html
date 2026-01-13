@@ -113,7 +113,7 @@
             box-shadow: 0 4px 15px rgba(27, 77, 62, 0.05);
             background: rgba(255, 255, 255, 0.95);
             color: var(--primary-green);
-            border: 2px solid transparent;
+            border: 2px solid transparent; /* הכנה למסגרת */
             text-align: right;
             direction: rtl;
             opacity: 0;
@@ -121,6 +121,7 @@
             animation: slideUpFade 0.6s ease-out forwards;
         }
 
+        /* עדכון האנימציה שתעבוד נכון עם הסדר החדש */
         .links > a:nth-of-type(1) { animation-delay: 0.1s; }
         .links > a:nth-of-type(2) { animation-delay: 0.2s; }
         .links > a:nth-of-type(3) { animation-delay: 0.3s; }
@@ -133,6 +134,7 @@
             flex-shrink: 0;
         }
 
+        /* אפקט הובר (מעבר עכבר) */
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(27, 77, 62, 0.1);
@@ -140,10 +142,11 @@
             border-color: var(--accent-gold);
         }
 
+        /* אפקט לחיצה (Active) - התיקון החדש */
         .btn:active {
-            transform: scale(0.97);
-            border-color: var(--accent-gold);
-            background-color: #fff9e6;
+            transform: scale(0.97); /* כיווץ קטן */
+            border-color: var(--accent-gold); /* מסגרת זהובה */
+            background-color: #fff9e6; /* הבהרה קלה */
             box-shadow: 0 2px 10px rgba(27, 77, 62, 0.1);
         }
 
@@ -161,14 +164,15 @@
         
         .btn.featured:hover {
             background: linear-gradient(135deg, #F5D775 0%, #DBB94C 100%);
-            border-color: white;
+            border-color: white; /* מסגרת לבנה בהובר */
         }
 
+        /* אפקט לחיצה מיוחד לכפתור הזהב */
         .btn.featured:active {
             transform: scale(0.97);
-            background: linear-gradient(135deg, #fff 0%, #F3CD58 30%, #D4AF37 100%);
-            border-color: white;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #fff 0%, #F3CD58 30%, #D4AF37 100%); /* אפקט פלאש מבריק */
+            border-color: white; /* מסגרת לבנה בולטת */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0,0,0,0.2); /* הילה מבריקה */
         }
 
         .btn.featured i { color: white; }
@@ -219,45 +223,17 @@
             background: var(--primary-green);
         }
         
+        /* אפקט לחיצה לאייקונים */
         .social-icon:active {
             transform: scale(0.9);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* סגנונות חדשים לפוטר המשפטי המורחב */
         footer {
-            margin-top: 50px;
-            padding: 20px 0;
+            margin-top: 30px;
             font-size: 0.85rem;
             color: var(--primary-green);
-            width: 100%;
-            border-top: 1px solid rgba(27, 77, 62, 0.1);
-        }
-
-        .legal-nav {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .legal-nav a {
-            color: var(--primary-green);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.2s;
-            font-weight: 400;
-        }
-
-        .legal-nav a:hover {
-            opacity: 1;
-            color: var(--accent-gold);
-            text-decoration: underline;
-        }
-
-        .separator {
-            opacity: 0.3;
+            opacity: 0.6;
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -278,8 +254,9 @@
         
         <div class="links">
             
+            <!-- אזור מתנות ראשון -->
             <div style="text-align: center;">
-                <div class="section-title">הגעת מהסרטון? המתנות שלך כאן 👇</div>
+                <div class="section-title">הגעת מהסרטון? המתנות שלך כאן <i class="fa-solid fa-chevron-down" style="font-size: 0.8em;"></i></div>
             </div>
 
             <a href="https://lp.smoove.io/tsn1" class="btn gift">
@@ -292,14 +269,16 @@
                 להורדת חוברת מתוקים ללא רגשות אשם (במתנה)
             </a>
 
+            <!-- אזור הספר המודפס -->
             <a href="https://rivkaol.github.io/sefer-matkonim/" class="btn featured">
                 <span class="badge">המומלץ ביותר ⭐</span>
                 <i class="fa-solid fa-book-open"></i>
-                <span>המתנה הכי טובה למטבח שלך<br><small>הזמיני את ספר המתכונים המודפס</small></span>
+                <span>הזמיני את ספר המתכונים המודפס</span>
             </a>
 
+            <!-- שאר הקישורים -->
             <div style="text-align: center;">
-                <div class="section-title">עוד בקהילה</div>
+                <div class="section-title">גם כאן ממשיכות ביחד <i class="fa-solid fa-heart" style="font-size: 0.8em; color: var(--primary-green);"></i></div>
             </div>
 
             <a href="https://chat.whatsapp.com/Fuc4X9Wyfiv58sYmitiXb0" class="btn">
@@ -307,10 +286,7 @@
                 להצטרפות לקהילת הטיפים השקטה
             </a>
 
-            <a href="https://rivkaol.github.io/mamtikim/" class="btn">
-                <i class="fa-solid fa-leaf"></i>
-                המדריך השלם לממתיקים בטוחים
-            </a>
+            <!-- הוסר הכפתור למדריך הממתיקים -->
 
         </div>
 
@@ -322,14 +298,7 @@
         </div>
 
         <footer>
-            <p>© כל הזכויות שמורות לרבקה הולצברג</p>
-            <nav class="legal-nav">
-                <a href="legal/privacy.html">מדיניות פרטיות</a>
-                <span class="separator">|</span>
-                <a href="legal/terms.html">תנאי שימוש</a>
-                <span class="separator">|</span>
-                <a href="legal/accessibility.html">הצהרת נגישות</a>
-            </nav>
+            © כל הזכויות שמורות לרבקה הולצברג
         </footer>
     </div>
 
