@@ -28,7 +28,8 @@
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
-            background: linear-gradient(rgba(248, 249, 250, 0.92), rgba(248, 249, 250, 0.92)), 
+            /* רקע עם טקסטורה מוחלשת מאוד (שקיפות 0.96) */
+            background: linear-gradient(rgba(248, 249, 250, 0.96), rgba(248, 249, 250, 0.96)), 
                         url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80');
             background-size: cover;
             background-position: center;
@@ -91,6 +92,13 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
+        /* עיצוב מיוחד לכותרת הקהילה */
+        .section-title.community {
+            color: var(--primary-green); /* טקסט ירוק */
+            border: 1px solid var(--accent-gold); /* מסגרת זהב עדינה */
+            background: rgba(255, 255, 255, 0.9);
+        }
+
         .links {
             display: flex;
             flex-direction: column;
@@ -113,7 +121,7 @@
             box-shadow: 0 4px 15px rgba(27, 77, 62, 0.05);
             background: rgba(255, 255, 255, 0.95);
             color: var(--primary-green);
-            border: 2px solid transparent; /* הכנה למסגרת */
+            border: 2px solid transparent;
             text-align: right;
             direction: rtl;
             opacity: 0;
@@ -121,7 +129,7 @@
             animation: slideUpFade 0.6s ease-out forwards;
         }
 
-        /* עדכון האנימציה שתעבוד נכון עם הסדר החדש */
+        /* עדכון האנימציה */
         .links > a:nth-of-type(1) { animation-delay: 0.1s; }
         .links > a:nth-of-type(2) { animation-delay: 0.2s; }
         .links > a:nth-of-type(3) { animation-delay: 0.3s; }
@@ -134,7 +142,6 @@
             flex-shrink: 0;
         }
 
-        /* אפקט הובר (מעבר עכבר) */
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(27, 77, 62, 0.1);
@@ -142,11 +149,10 @@
             border-color: var(--accent-gold);
         }
 
-        /* אפקט לחיצה (Active) - התיקון החדש */
         .btn:active {
-            transform: scale(0.97); /* כיווץ קטן */
-            border-color: var(--accent-gold); /* מסגרת זהובה */
-            background-color: #fff9e6; /* הבהרה קלה */
+            transform: scale(0.97);
+            border-color: var(--accent-gold);
+            background-color: #fff9e6;
             box-shadow: 0 2px 10px rgba(27, 77, 62, 0.1);
         }
 
@@ -164,19 +170,23 @@
         
         .btn.featured:hover {
             background: linear-gradient(135deg, #F5D775 0%, #DBB94C 100%);
-            border-color: white; /* מסגרת לבנה בהובר */
+            border-color: white;
         }
 
-        /* אפקט לחיצה מיוחד לכפתור הזהב */
         .btn.featured:active {
             transform: scale(0.97);
-            background: linear-gradient(135deg, #fff 0%, #F3CD58 30%, #D4AF37 100%); /* אפקט פלאש מבריק */
-            border-color: white; /* מסגרת לבנה בולטת */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0,0,0,0.2); /* הילה מבריקה */
+            background: linear-gradient(135deg, #fff 0%, #F3CD58 30%, #D4AF37 100%);
+            border-color: white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .btn.featured i { color: white; }
         
+        /* מרכוז הטקסט בכפתור המודגש */
+        .btn.featured span {
+            text-align: center;
+        }
+
         .badge {
             position: absolute;
             top: -11px;
@@ -223,7 +233,6 @@
             background: var(--primary-green);
         }
         
-        /* אפקט לחיצה לאייקונים */
         .social-icon:active {
             transform: scale(0.9);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -260,33 +269,31 @@
             </div>
 
             <a href="https://lp.smoove.io/tsn1" class="btn gift">
-                <i class="fa-solid fa-gift"></i>
-                להורדת חוברת לחמים בריאים (במתנה)
+                <i class="fa-solid fa-bread-slice"></i>
+                להורדת חוברת לחמים בריאים ב<i class="fa-solid fa-gift" style="color: var(--accent-gold); margin-right: 2px;"></i>
             </a>
 
             <a href="https://lp.smoove.io/xg3y" class="btn gift">
                 <i class="fa-solid fa-cookie"></i>
-                להורדת חוברת מתוקים ללא רגשות אשם (במתנה)
+                להורדת חוברת מתוקים ללא רגשות אשם ב<i class="fa-solid fa-gift" style="color: var(--accent-gold); margin-right: 2px;"></i>
             </a>
 
             <!-- אזור הספר המודפס -->
             <a href="https://rivkaol.github.io/sefer-matkonim/" class="btn featured">
                 <span class="badge">המומלץ ביותר ⭐</span>
                 <i class="fa-solid fa-book-open"></i>
-                <span>הזמיני את ספר המתכונים המודפס</span>
+                <span>הזמיני את ספר המתכונים המודפס<br><small style="font-size: 0.9em; font-weight: 500; opacity: 0.95;">עם שליח עד הבית</small></span>
             </a>
 
             <!-- שאר הקישורים -->
             <div style="text-align: center;">
-                <div class="section-title">גם כאן ממשיכות ביחד <i class="fa-solid fa-heart" style="font-size: 0.8em; color: var(--primary-green);"></i></div>
+                <div class="section-title community">גם כאן ממשיכות ביחד <i class="fa-solid fa-heart" style="font-size: 0.8em; color: var(--accent-gold);"></i></div>
             </div>
 
             <a href="https://chat.whatsapp.com/Fuc4X9Wyfiv58sYmitiXb0" class="btn">
                 <i class="fa-brands fa-whatsapp"></i>
                 להצטרפות לקהילת הטיפים השקטה
             </a>
-
-            <!-- הוסר הכפתור למדריך הממתיקים -->
 
         </div>
 
@@ -301,6 +308,6 @@
             © כל הזכויות שמורות לרבקה הולצברג
         </footer>
     </div>
-
+<script src="https://rivkaol.github.io/legal-footer.js"></script>
 </body>
 </html>
