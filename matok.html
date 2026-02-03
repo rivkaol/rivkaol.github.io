@@ -273,6 +273,7 @@
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            // הגנה מספאם
             if (document.getElementById('honeypot').value !== "") {
                 return;
             }
@@ -286,6 +287,7 @@
             const data = Object.fromEntries(formData.entries());
             data.timestamp = new Date().toISOString();
 
+            // *** הוובהוק המעודכן שלך ***
             const webhookUrl = 'https://hook.eu2.make.com/lm31dmtx8enoyjhjufmqyv55wivnx4qx';
 
             fetch(webhookUrl, {
@@ -295,8 +297,8 @@
             })
             .then(response => {
                 if (response.ok) {
-                    alert("איזה כיף! החוברת בדרך אלייך למייל.");
-                    btn.innerText = "נשלח בהצלחה! ✓";
+                    // *** הפנייה לדף התודה החדש של המתוקים ***
+                    window.location.href = 'https://rivkaholtsberg.co.il/thanks-matok/thanks.html';
                 } else {
                     alert("הייתה בעיה בשליחה, נסי שוב בעוד רגע.");
                     btn.innerText = originalText;
