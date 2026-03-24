@@ -21,11 +21,17 @@
             --bg-cream: #FDFBF7;
         }
 
+        /* תיקון קריטי למניעת חיתוך במובייל */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         /* מניעת תזוזות וגלילה רוחבית */
         html, body { 
-            margin: 0; 
-            padding: 0; 
             width: 100%;
+            max-width: 100vw;
             overflow-x: hidden;
             background-color: var(--bg-cream);
             -webkit-font-smoothing: antialiased;
@@ -59,7 +65,7 @@
             border: 1px solid rgba(212, 175, 55, 0.15);
             text-align: center;
             animation: slideUp 0.6s ease-out;
-            box-sizing: border-box;
+            width: 100%;
         }
 
         .badge {
@@ -93,6 +99,7 @@
         .form-group {
             margin-bottom: 20px;
             text-align: right;
+            width: 100%;
         }
 
         label {
@@ -107,7 +114,7 @@
         input[type="text"],
         input[type="email"] {
             width: 100%;
-            height: 50px; /* גובה מדויק */
+            height: 50px;
             padding: 0 16px;
             border: 1px solid #DEDEDE;
             border-radius: 12px;
@@ -116,7 +123,7 @@
             background: #FAFAFA;
             transition: all 0.3s ease;
             color: var(--text-dark);
-            box-sizing: border-box;
+            -webkit-appearance: none;
         }
 
         input:focus {
@@ -139,6 +146,7 @@
             text-align: right;
             cursor: pointer;
             transition: all 0.2s;
+            width: 100%;
         }
 
         .checkbox-container:hover {
@@ -161,7 +169,6 @@
             line-height: 1.5;
             margin: 0;
             cursor: pointer;
-            padding-right: 0;
         }
 
         .submit-btn {
@@ -180,6 +187,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
+            -webkit-appearance: none;
         }
 
         .submit-btn:hover {
@@ -212,11 +220,20 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
+        /* התאמה מדויקת יותר למובייל */
         @media (max-width: 480px) {
-            .glass-card { padding: 30px 20px; }
-            h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 1.15rem; }
-            .submit-btn { font-size: 1.25rem; height: 58px; }
+            body {
+                padding: 15px 12px;
+            }
+            .glass-card { 
+                padding: 30px 15px; 
+                border-radius: 24px;
+            }
+            h1 { font-size: 1.7rem; }
+            .subtitle { font-size: 1.1rem; }
+            .checkbox-container { padding: 15px 12px; }
+            .checkbox-container label { font-size: 0.95rem; }
+            .submit-btn { font-size: 1.2rem; height: 56px; }
         }
     </style>
 </head>
@@ -226,7 +243,7 @@
         <div class="glass-card">
             
             <div class="badge">
-                <i class="fa-solid fa-cookie-bite"></i> <!-- אייקון שמתאים למתוקים -->
+                <i class="fa-solid fa-cookie-bite"></i>
                 החוברת המלאה לקינוחים בריאים
             </div>
 
@@ -318,7 +335,6 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // *** הפנייה לדף התודה הייעודי של המתוקים ***
                     window.location.href = 'https://rivkaholtsberg.co.il/thanks-matok/thanks.html';
                 } else {
                     alert("הייתה בעיה בשליחה, נסי שוב בעוד רגע.");
