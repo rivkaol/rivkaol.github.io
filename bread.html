@@ -29,6 +29,11 @@
             overflow-x: hidden;
             background-color: var(--bg-cream);
             -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
         }
 
         body {
@@ -54,12 +59,12 @@
         .glass-card {
             background: #ffffff;
             border-radius: 28px;
-            padding: 40px 25px;
+            padding: 40px 30px;
             box-shadow: 0 15px 45px rgba(27, 77, 62, 0.08);
             border: 1px solid rgba(212, 175, 55, 0.15);
             text-align: center;
             animation: slideUp 0.6s ease-out;
-            box-sizing: border-box;
+            width: 100%;
         }
 
         .badge {
@@ -81,6 +86,7 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 15px;
+            margin-top: 0;
         }
 
         .subtitle {
@@ -89,34 +95,33 @@
             margin-bottom: 30px;
         }
 
-        /* עיצוב הטופס - תיקון המראה */
+        /* עיצוב הטופס */
         .form-group {
             margin-bottom: 20px;
             text-align: right;
         }
 
-        label {
+        .form-group label {
             display: block;
             color: var(--primary-green);
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-size: 1.1rem;
-            padding-right: 2px;
+            padding-right: 4px;
         }
 
         input[type="text"],
         input[type="email"] {
             width: 100%;
-            height: 50px; /* גובה מדויק יותר */
+            height: 52px;
             padding: 0 16px;
             border: 1px solid #DEDEDE;
-            border-radius: 12px; /* פינות מעודנות יותר */
+            border-radius: 12px;
             font-family: 'Rubik', sans-serif;
             font-size: 1.1rem;
             background: #FAFAFA;
             transition: all 0.3s ease;
             color: var(--text-dark);
-            box-sizing: border-box;
         }
 
         input:focus {
@@ -126,10 +131,10 @@
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
         }
 
-        /* עיצוב תיבת האישור (Checkbox) - ברור ונעים */
+        /* עיצוב תיבת האישור (Checkbox) - משופר למובייל */
         .checkbox-container {
             background: #F8FAF9;
-            padding: 18px;
+            padding: 16px;
             border-radius: 16px;
             border: 1px solid #EDF2EF;
             display: flex;
@@ -139,6 +144,7 @@
             text-align: right;
             cursor: pointer;
             transition: all 0.2s;
+            /* הגדרת תגית Label כקונטיינר הופכת את כל האזור ללחיץ אוטומטית */
         }
 
         .checkbox-container:hover {
@@ -146,22 +152,21 @@
         }
 
         .checkbox-container input {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             accent-color: var(--primary-green);
             cursor: pointer;
-            margin-top: 4px;
+            margin-top: 2px;
             flex-shrink: 0;
         }
 
-        .checkbox-container label {
+        .checkbox-text {
             font-size: 1.05rem;
             color: var(--text-gray);
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.4;
             margin: 0;
             cursor: pointer;
-            padding-right: 0;
         }
 
         .submit-btn {
@@ -180,6 +185,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
+            font-family: 'Rubik', sans-serif;
         }
 
         .submit-btn:hover {
@@ -189,6 +195,12 @@
 
         .submit-btn:active {
             transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .security-text {
@@ -212,11 +224,55 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
+        /* התאמות חכמות למובייל */
         @media (max-width: 480px) {
-            .glass-card { padding: 30px 20px; }
-            h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 1.15rem; }
-            .submit-btn { font-size: 1.25rem; height: 58px; }
+            body {
+                padding: 15px;
+            }
+            .glass-card { 
+                padding: 30px 20px; 
+                border-radius: 20px;
+            }
+            .badge {
+                font-size: 0.9rem;
+                padding: 6px 14px;
+            }
+            h1 { 
+                font-size: 1.7rem; 
+            }
+            .subtitle { 
+                font-size: 1.1rem; 
+                margin-bottom: 20px;
+            }
+            .form-group label {
+                font-size: 1rem;
+            }
+            input[type="text"],
+            input[type="email"] {
+                height: 48px;
+                font-size: 1rem;
+            }
+            .checkbox-container {
+                padding: 14px;
+                gap: 10px;
+                border-radius: 12px;
+            }
+            .checkbox-text {
+                font-size: 0.95rem;
+            }
+            .checkbox-container input {
+                width: 20px;
+                height: 20px;
+                margin-top: 0;
+            }
+            .submit-btn { 
+                font-size: 1.25rem; 
+                height: 56px; 
+            }
+            .security-text {
+                font-size: 0.95rem;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -269,12 +325,13 @@
                     >
                 </div>
 
-                <div class="checkbox-container" onclick="document.getElementById('marketing_consent').click();">
-                    <input type="checkbox" id="marketing_consent" name="marketing_consent" required onclick="event.stopPropagation();">
-                    <label for="marketing_consent">
+                <!-- שיניתי את הקונטיינר לתגית Label כדי שכל האזור יהיה לחיץ באופן טבעי ללא סקריפטים -->
+                <label class="checkbox-container">
+                    <input type="checkbox" id="marketing_consent" name="marketing_consent" required>
+                    <span class="checkbox-text">
                         אני מסכימה לקבל מרבקה הולצברג את החוברת למייל, וכן עדכונים, מתכונים והצעות שוות. (ניתן להסיר את עצמך תמיד בקליק).
-                    </label>
-                </div>
+                    </span>
+                </label>
 
                 <button type="submit" class="submit-btn" id="submitBtn">
                     <span id="btnText">שלחי לי את החוברת עכשיו</span>
@@ -294,6 +351,7 @@
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            // מנגנון הגנה מספאמרים (Honeypot)
             if (document.getElementById('honeypot').value !== "") {
                 return;
             }
