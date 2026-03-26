@@ -21,32 +21,42 @@
             --bg-cream: #FDFBF7;
         }
 
-        /* מניעת תזוזות וגלילה רוחבית */
-        html, body { 
+        /* הגדרות קריטיות למניעת חריגות רוחב ופס לבן בשמאל (כמו בדף התודה) */
+        * { 
             margin: 0; 
             padding: 0; 
-            width: 100%;
-            overflow-x: hidden;
-            background-color: var(--bg-cream);
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
+            box-sizing: border-box; 
         }
 
-        *, *:before, *:after {
-            box-sizing: inherit;
+        html {
+            background-color: #ffffff; /* רקע לבן נקי לחלוטין */
+        }
+
+        /* נעילת רוחב למניעת תזוזה לצדדים */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Rubik', sans-serif;
             color: var(--text-dark);
-            background: radial-gradient(circle at center, #ffffff 0%, var(--bg-cream) 100%) no-repeat fixed;
+            
+            /* הגדרת צבע לבן אחיד לכל הדף, מונע פסים אפורים */
+            background-color: #ffffff;
+            background-image: none; /* הסרתי את הגרדיאנט כדי שיהיה נקי לחלוטין כמו שביקשת */
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 15px;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -56,12 +66,13 @@
             z-index: 1;
         }
 
+        /* עיצוב כרטיסייה ראשית - מותאם לרקע הלבן */
         .glass-card {
             background: #ffffff;
             border-radius: 28px;
             padding: 40px 30px;
             box-shadow: 0 15px 45px rgba(27, 77, 62, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(27, 77, 62, 0.06); /* גבול עדין שתואם לדף התודה */
             text-align: center;
             animation: slideUp 0.6s ease-out;
             width: 100%;
@@ -110,6 +121,12 @@
             padding-right: 4px;
         }
 
+        /* יישור המייל לשמאל כדי שיהיה נוח להקליד באנגלית */
+        input[type="email"] {
+            text-align: left;
+            direction: ltr;
+        }
+
         input[type="text"],
         input[type="email"] {
             width: 100%;
@@ -131,6 +148,34 @@
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
         }
 
+        /* עיצוב כפתורי ההשלמה המהירה למייל */
+        .email-suggestions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            justify-content: flex-end; /* יישור לימין (בגלל שהאתר RTL) */
+            flex-wrap: wrap;
+        }
+
+        .domain-btn {
+            background: #F0F4F1;
+            color: var(--primary-green);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(27, 77, 62, 0.1);
+            direction: ltr;
+            font-weight: 500;
+        }
+
+        .domain-btn:hover {
+            background: #e4ebe7;
+            border-color: var(--primary-green);
+            transform: translateY(-1px);
+        }
+
         /* עיצוב תיבת האישור (Checkbox) - משופר למובייל */
         .checkbox-container {
             background: #F8FAF9;
@@ -144,7 +189,6 @@
             text-align: right;
             cursor: pointer;
             transition: all 0.2s;
-            /* הגדרת תגית Label כקונטיינר הופכת את כל האזור ללחיץ אוטומטית */
         }
 
         .checkbox-container:hover {
@@ -226,9 +270,6 @@
 
         /* התאמות חכמות למובייל */
         @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
             .glass-card { 
                 padding: 30px 20px; 
                 border-radius: 20px;
@@ -308,7 +349,6 @@
                         type="text" 
                         id="name" 
                         name="name" 
-                        placeholder="הקלידי כאן את שמך..." 
                         required 
                         minlength="2"
                     >
@@ -320,16 +360,23 @@
                         type="email" 
                         id="email" 
                         name="email" 
-                        placeholder="המייל אליו נשלח את החוברת..." 
                         required
+                        autocomplete="email"
                     >
+                    <!-- כפתורי השלמה מהירה -->
+                    <div class="email-suggestions" id="emailSuggestions">
+                        <span class="domain-btn" data-domain="@gmail.com">@gmail.com</span>
+                        <span class="domain-btn" data-domain="@walla.com">@walla.com</span>
+                        <span class="domain-btn" data-domain="@yahoo.com">@yahoo.com</span>
+                    </div>
                 </div>
 
-                <!-- שיניתי את הקונטיינר לתגית Label כדי שכל האזור יהיה לחיץ באופן טבעי ללא סקריפטים -->
+                <!-- הקונטיינר הוא תגית Label כדי שכל האזור יהיה לחיץ באופן טבעי -->
                 <label class="checkbox-container">
                     <input type="checkbox" id="marketing_consent" name="marketing_consent" required>
                     <span class="checkbox-text">
-                        אני מסכימה לקבל מרבקה הולצברג את החוברת למייל, וכן עדכונים, מתכונים והצעות שוות. (ניתן להסיר את עצמך תמיד בקליק).
+                        אני מאשרת לקבל מרבקה הולצברג מיילים הכוללים תוכן, טיפים, מתכונים והצעות שיווקיות למוצרים ותוכניות.<br>
+                        <span style="font-size: 0.85em; opacity: 0.75;">ניתן להסיר בכל עת באמצעות קישור ההסרה שבמייל.</span>
                     </span>
                 </label>
 
@@ -338,16 +385,31 @@
                     <i class="fa-regular fa-paper-plane"></i>
                 </button>
             </form>
-
-            <div class="security-text">
-                <i class="fa-solid fa-lock"></i> החוברת תישלח אלייך באופן מיידי.
-            </div>
         </div>
     </div>
 
     <script src="https://rivkaol.github.io/legal-footer.js"></script>
 
     <script>
+        // פונקציונליות להשלמה מהירה של המייל
+        const emailInput = document.getElementById('email');
+        const domainBtns = document.querySelectorAll('.domain-btn');
+
+        domainBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const domain = this.getAttribute('data-domain');
+                let currentValue = emailInput.value;
+                
+                // אם כבר יש @ בטקסט, נחליף את כל מה שאחריו
+                if (currentValue.includes('@')) {
+                    currentValue = currentValue.split('@')[0];
+                }
+                
+                emailInput.value = currentValue + domain;
+                emailInput.focus(); // מחזיר את הפוקוס לשדה
+            });
+        });
+
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
